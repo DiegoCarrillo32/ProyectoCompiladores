@@ -23,9 +23,17 @@ parameter: type ID (Lbrace Rbrace)*;
 
 type: Type | ID;
 
-block: Block Lbrace statement* Rbrace;
+block: Lbrace statement* Rbrace;
 
-statement: block | ifStatement | whileStatement | forStatement | returnStatement | readStatement | writeStatement | expressionStatement | Semicolon;
+statement: block        | 
+     ifStatement        | 
+     whileStatement     |
+     forStatement       | 
+     returnStatement    | 
+     readStatement      |
+     writeStatement     |
+     expressionStatement|
+     Semicolon;
 
 ifStatement: If Lparen expression Rparen statement (Else statement)?;
 
@@ -39,7 +47,7 @@ returnStatement: Return expression? Semicolon;
 
 readStatement: Read Lparen designator Rparen Semicolon;
 
-writeStatement: Write Lparen (expression | stringConst) Rparen Semicolon;
+writeStatement: Write Lparen (expression | PLAIN_TEXT) (Comma expression | PLAIN_TEXT)* Rparen Semicolon;
 
 expressionStatement: expression Semicolon;
 
@@ -47,7 +55,12 @@ expression: assignmentExpression;
 
 assignmentExpression: conditionalExpression (assignmentOperator conditionalExpression)?;
 
-assignmentOperator: Equals | PlusEquals | MinusEquals | MultEquals | DivEquals | ModEquals;
+assignmentOperator:  Equals         |
+                     PlusEquals     | 
+                     MinusEquals    | 
+                     MultEquals     | 
+                     DivEquals      | 
+                     ModEquals;
 
 conditionalExpression: logicalOrExpression (QuestionMark expression Colon conditionalExpression)?;
 
@@ -71,7 +84,7 @@ postfixExpression: primaryExpression (Lbrace expression Rbrace | Lparen argument
 
 argumentList: expression (Comma expression)*;
 
-primaryExpression: designator | methodInvocation | Lparen expression Rparen | ID | number | charConst | stringConst;
+primaryExpression: designator | methodInvocation | Lparen expression Rparen | ID | number | charConst | PLAIN_TEXT;
 
 designator: ID (Lbrace expression Rbrace | DOT ID)*;
 
@@ -81,6 +94,5 @@ number: NUM;
 
 charConst: CharConst;
 
-stringConst: StringConst;
 
 unaryOperator: Plus | Minus | LogicalNot;
