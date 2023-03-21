@@ -14,20 +14,34 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+    
 
-    <Grid ShowGridLines="True">
+    <Grid >
+        
         
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <StackPanel Grid.Row="0" >
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File" >
+                    <MenuItem Click="OpenFile_Click" Header="_Open..." />
+                    <Separator/>
+                    <MenuItem Header="_Exit"/>
+                </MenuItem>
+                <MenuItem Header="_Edit">
+                    <MenuItem Header="Copy"/>
+                    <MenuItem Header="Paste"/>
+                </MenuItem>
+            </Menu>
             <Button Content="Build code" HorizontalAlignment="Right" Margin="10" Background="green"
                     Foreground="white"
                     Click="Button_OnClick"/>
-        </StackPanel>
-        <TextBox Name="code_editor" FontSize="16" AcceptsReturn="True" AcceptsTab="True"  Grid.Row="1"></TextBox>
+        </DockPanel>
+        
+        <TextBox Text="{ Binding FilePath , Mode=TwoWay }"   Name="code_editor" FontSize="16" AcceptsReturn="True" AcceptsTab="True"  Grid.Row="1"></TextBox>
     </Grid>
 
 </Window>

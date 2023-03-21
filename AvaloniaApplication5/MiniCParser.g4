@@ -25,7 +25,9 @@ type: Type | ID;
 
 block: Lbrace statement* Rbrace;
 
-statement: block        | 
+statement: 
+     designator (Assign expression | Lparen argumentList? Rparen | PlusPlus | MinusMinus) |
+     block              | 
      ifStatement        | 
      whileStatement     |
      forStatement       | 

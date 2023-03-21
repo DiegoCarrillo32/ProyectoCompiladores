@@ -47,6 +47,7 @@ PlusEquals:'+=';
 PlusPlus: '++';
 MinusMinus: '--';
 DOT: '.';
+Assign: '=';
 MinusEquals:'-='; 
 MultEquals:'*='; 
 DivEquals:'/=';

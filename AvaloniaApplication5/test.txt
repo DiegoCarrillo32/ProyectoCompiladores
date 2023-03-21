@@ -1,0 +1,14 @@
+using System;
+
+class Test {
+
+	varDecl int contador;
+	
+	methodDecl void returnContador(int diego, int julio, int jose) { 
+		diego++;
+		write(2,"perro perro perro");
+		if(5 == 5);
+
+	}
+	
+}
