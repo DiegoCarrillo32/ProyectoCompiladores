@@ -16,10 +16,13 @@ public partial class MainWindow : Window
     private MiniCScanner _miniCScanner = null;
     private CommonTokenStream tokens = null;
     ICharStream _input=null;
+    MyErrorListener errorListener = null;
     public MainWindow()
     {
         InitializeComponent();
-        DataContext = new MainWindowViewModel();;
+        DataContext = new MainWindowViewModel();
+        
+
 
     }
     
@@ -29,14 +32,33 @@ public partial class MainWindow : Window
         string text = myTextBox.Text;
         try
         {
+            errorListener = new MyErrorListener();
             _input = CharStreams.fromString(text);
             _miniCScanner = new MiniCScanner(_input);
             Console.WriteLine(_input);
             tokens = new CommonTokenStream(_miniCScanner);
             _miniCParserParser = new MiniCParser(tokens);
+            
+            
+            //ERRORES
+            //_miniCScanner.RemoveErrorListeners();
+
+            _miniCParserParser.RemoveErrorListeners();
+            _miniCParserParser.AddErrorListener(errorListener);
+            
+            
             var tree = _miniCParserParser.program();
-            Console.WriteLine("Compilación finalizada");
-            Console.WriteLine(tree.ToStringTree(_miniCParserParser));
+            if(errorListener.hasErrors() == false){
+                Console.WriteLine("Compilación exitosa");
+                Console.WriteLine(tree.ToStringTree(_miniCParserParser));
+                //java.util.concurrent.Future<JFrame> treeGUI = org.antlr.v4.gui.Trees.inspect(tree, parser);
+                //treeGUI.get().setVisible(true);
+            } else {
+                Console.WriteLine("Compilacion fallida");
+                Console.WriteLine(errorListener.ToString());
+            }
+            
+            
         }
         catch (Exception exp)
         {

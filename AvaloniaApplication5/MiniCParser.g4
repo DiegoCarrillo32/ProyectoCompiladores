@@ -23,7 +23,7 @@ parameter: type ID (Lbrace Rbrace)*;
 
 type: Type | ID;
 
-block: Lbrace statement* Rbrace;
+block:  Lbrace statement* Rbrace;
 
 statement: 
      designator (Assign expression | Lparen argumentList? Rparen | PlusPlus | MinusMinus) |
