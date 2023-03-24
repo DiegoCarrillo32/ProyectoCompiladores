@@ -44,7 +44,7 @@
                     Click="Button_OnClick"/>
         </StackPanel>
         
-        <TextBox  Text="{ Binding FilePath , Mode=TwoWay }"   Name="code_editor" FontSize="16" AcceptsReturn="True" AcceptsTab="True"  Grid.Row="1"></TextBox>
+        <TextBox Text="{ Binding FilePath , Mode=TwoWay }"   Name="code_editor" FontSize="16" AcceptsReturn="True" AcceptsTab="True"  Grid.Row="1"></TextBox>
     </Grid>
 
 </Window>

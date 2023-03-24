@@ -56,6 +56,7 @@ public partial class MainWindow : Window
             } else {
                 Console.WriteLine("Compilacion fallida");
                 Console.WriteLine(errorListener.ToString());
+
             }
             
             
@@ -74,7 +75,6 @@ public partial class MainWindow : Window
         openFileDialog.Title = "Select a file";
         openFileDialog.Filters.Add(new FileDialogFilter { Name = "Text Files", Extensions = { "txt" } });
         var selectedFile = await openFileDialog.ShowAsync(this);
-        Console.WriteLine("ESTOY EN ESTA FUNCION");
         if (selectedFile != null)
         {
              Console.WriteLine(selectedFile[0]);

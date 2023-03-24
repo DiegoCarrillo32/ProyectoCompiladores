@@ -4,97 +4,65 @@ options {
   tokenVocab = MiniCScanner;
 }
 
-// Parser rules
-
 program: usingDeclaration? classDeclaration* EOF;
 
-usingDeclaration: Using ID Semicolon;
+usingDeclaration: Using ident Semicolon;
 
-classDeclaration: Class ID Lbrace memberDeclaration* Rbrace;
+classDeclaration: Class ident Lbrace memberDeclaration* Rbrace;
 
 memberDeclaration: varDeclaration | methodDeclaration | classDeclaration;
 
-varDeclaration: VarDecl type ID (Lbrace NUM Rbrace)* Semicolon;
+varDeclaration: type ident (Comma ident)* Semicolon;
 
-methodDeclaration: MethodDecl type ID Lparen parameterList? Rparen block;
+methodDeclaration: (type|Void) ID Lparen formPars? Rparen block;
 
-parameterList: parameter (Comma parameter)*;
-parameter: type ID (Lbrace Rbrace)*;
+formPars: parameter (Comma parameter)*;
 
-type: Type | ID;
+parameter: type ident;
 
-block:  Lbrace statement* Rbrace;
+type: ident  (LList ident? RList)*;
+
+block:  Lbrace (statement|varDeclaration)* Rbrace;
 
 statement: 
-     designator (Assign expression | Lparen argumentList? Rparen | PlusPlus | MinusMinus) |
-     block              | 
+     designator (Assign expression | Lparen actPars? Rparen | PlusPlus | MinusMinus) Semicolon |
      ifStatement        | 
-     whileStatement     |
      forStatement       | 
+     whileStatement     |
+     Break Semicolon    |
      returnStatement    | 
      readStatement      |
      writeStatement     |
-     expressionStatement|
+     block              | 
      Semicolon;
 
-ifStatement: If Lparen expression Rparen statement (Else statement)?;
+ifStatement: If Lparen condition Rparen statement (Else statement)?;
 
-whileStatement: While Lparen expression Rparen statement;
+forStatement: For Lparen expressionStatement varDeclaration* condition* Rparen statement;
 
-forStatement: For Lparen forControl Rparen statement;
-
-forControl: varDeclaration | expressionStatement |;
+whileStatement: While Lparen condition Rparen statement; // NO SE SI ES EXPRESSION O USAR CONDITIONALEXPRESSION
 
 returnStatement: Return expression? Semicolon;
 
 readStatement: Read Lparen designator Rparen Semicolon;
 
-writeStatement: Write Lparen (expression | PLAIN_TEXT) (Comma expression | PLAIN_TEXT)* Rparen Semicolon;
+writeStatement: Write Lparen (expression | PLAIN_TEXT) (Comma expression | PLAIN_TEXT)? Rparen Semicolon;
 
 expressionStatement: expression Semicolon;
 
-expression: assignmentExpression;
+actPars: expression (Comma expression)*;
 
-assignmentExpression: conditionalExpression (assignmentOperator conditionalExpression)?;
+designator: ID (LList expression RList | DOT ID)*;
 
-assignmentOperator:  Equals         |
-                     PlusEquals     | 
-                     MinusEquals    | 
-                     MultEquals     | 
-                     DivEquals      | 
-                     ModEquals;
-
-conditionalExpression: logicalOrExpression (QuestionMark expression Colon conditionalExpression)?;
-
-logicalOrExpression: logicalAndExpression (LogicalOr logicalAndExpression)*;
-
-logicalAndExpression: equalityExpression (LogicalAnd equalityExpression)*;
-
-equalityExpression: relationalExpression ((Equals | NotEquals) relationalExpression)*;
-
-relationalExpression: additiveExpression ((LessThan | LessThanOrEquals | GreaterThan | GreaterThanOrEquals) additiveExpression)*;
-
-additiveExpression: multiplicativeExpression ((Plus | Minus) multiplicativeExpression)*;
-
-multiplicativeExpression: castExpression ((Mult | Div | Mod) castExpression)*;
-
-castExpression: unaryExpression | Lparen type Rparen castExpression;
-
-unaryExpression: postfixExpression | PlusPlus unaryExpression | MinusMinus unaryExpression | unaryOperator castExpression;
-
-postfixExpression: primaryExpression (Lbrace expression Rbrace | Lparen argumentList? Rparen | DOT ID | PlusPlus | MinusMinus)*;
-
-argumentList: expression (Comma expression)*;
-
-primaryExpression: designator | methodInvocation | Lparen expression Rparen | ID | number | charConst | PLAIN_TEXT;
-
-designator: ID (Lbrace expression Rbrace | DOT ID)*;
-
-methodInvocation: ID Lparen argumentList? Rparen;
-
-number: NUM;
-
-charConst: CharConst;
-
-
-unaryOperator: Plus | Minus | LogicalNot;
+condition   : condTerm (LogicalOr condTerm)*;
+condTerm : condFact (LogicalAnd condFact)*;
+condFact : expression relop expression;
+cast: Lparen type Rparen;
+expression: Dash? cast? term (addop term)*; 
+//en factor el type de 'new type' no se puede
+factor: designator (Lparen actPars Rparen)? | NUM | CharConst | StringConst | (False | True) | (New type) | (Lparen expression Rparen);
+term: factor (mulop factor)*;
+mulop : Mult | Div | Mod;
+addop: Plus | Minus;
+relop: LessThan | LessThanOrEquals | GreaterThan | GreaterThanOrEquals;
+ident: ID (LList RList)*;
