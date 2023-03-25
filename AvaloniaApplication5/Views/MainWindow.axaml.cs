@@ -4,9 +4,12 @@ using System.IO;
 using System.Windows.Input;
 using Antlr4.Runtime;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
+using AvaloniaApplication5.Views;
 using AvaloniaApplication5.ViewModels;
 using gen;
+
 
 namespace AvaloniaApplication5.Views;
 
@@ -21,13 +24,17 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         DataContext = new MainWindowViewModel();
-        
-
-
     }
     
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
+        //INICIALIZO LA CONSOLA
+        //var ownerWindow = this;
+        var cw = new ConsoleWindow();
+        //cw.ShowDialog(ownerWindow);
+        cw.Show();
+        //cw.text_block.Text = "";
+        
         TextBox myTextBox = this.FindControl<TextBox>("code_editor");
         string text = myTextBox.Text;
         try
@@ -51,14 +58,18 @@ public partial class MainWindow : Window
             if(errorListener.hasErrors() == false){
                 Console.WriteLine("Compilación exitosa");
                 Console.WriteLine(tree.ToStringTree(_miniCParserParser));
+                cw.text_block.Text += "Compilacion exitosa \n";
+                cw.text_block.Text += tree.ToStringTree(_miniCParserParser);
+                
                 //java.util.concurrent.Future<JFrame> treeGUI = org.antlr.v4.gui.Trees.inspect(tree, parser);
                 //treeGUI.get().setVisible(true);
             } else {
                 Console.WriteLine("Compilacion fallida");
                 Console.WriteLine(errorListener.ToString());
-
+                cw.text_block.Text += "Compilacion fallida \n";
+                cw.text_block.Text += errorListener;
+                
             }
-            
             
         }
         catch (Exception exp)
@@ -86,5 +97,4 @@ public partial class MainWindow : Window
              // FilePopup.IsOpen = true;
         }
     }
-
 }

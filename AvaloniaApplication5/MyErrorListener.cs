@@ -9,8 +9,7 @@ namespace AvaloniaApplication5;
 
 public class MyErrorListener: BaseErrorListener
 {
-
-
+    
     public LinkedList<string> errorMsgs;
 
     public MyErrorListener ( )
@@ -50,9 +49,9 @@ public class MyErrorListener: BaseErrorListener
         {
             Console.WriteLine(variable);
             //builder.Append(string.Format("%s\n", variable));
+            builder.Append(variable + "\n");
         }
         return builder.ToString();
     }
     
-
 }
