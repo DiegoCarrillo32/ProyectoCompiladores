@@ -10,14 +10,12 @@ namespace AvaloniaApplication5.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
     public string Greeting => "Welcome to Avalonia!";
-    private string _filePath = "";
+    private string _filePath = " ";
 
     public string FilePath
     {
         get => _filePath;
         set => this.RaiseAndSetIfChanged(ref _filePath, value);
-
-        //
     }
 
     public ICommand OpenFile { get; }

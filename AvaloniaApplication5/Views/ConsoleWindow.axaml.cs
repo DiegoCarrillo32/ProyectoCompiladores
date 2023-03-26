@@ -26,12 +26,5 @@ namespace AvaloniaApplication5.Views
             myTextBlock.Text = "Algo";
             return errorListener.ToString();
         }
-
-        public void button_Click(object sender, RoutedEventArgs e)
-        {
-            // Change button text when button is clicked.
-            var button = (Button)sender;
-            button.Content = "Hello, Avalonia!";
-        }
     }
 }

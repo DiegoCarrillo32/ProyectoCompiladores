@@ -7,8 +7,8 @@ namespace AvaloniaApplication5.ViewModels;
 public class ConsoleWindowViewModel : ViewModelBase
 {
     public string Greeting => "AQUI DEBERIA APARECER LA CUESTION";
-    private string _text = "HOALLALASSOFDSFL";
-
+    
+    private string _text = "";
     public string Text
     {
         get => _text;
@@ -16,6 +16,7 @@ public class ConsoleWindowViewModel : ViewModelBase
 
         //
     }
+    
 
     public ICommand OpenFile { get; }
 }
