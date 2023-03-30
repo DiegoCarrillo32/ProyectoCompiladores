@@ -82,7 +82,7 @@ fragment SPECIAL  : [\p{P}\p{S}];
 //([1-9][0-9]*)|([0]+)
 WS      : [ \t\n\r]+ -> skip ;
 COMMENT : '//' ~[\r\n]* -> skip;
-MULTIPLE_COMMENT: '/*' .*? '*/' -> skip;
+//MULTIPLE_COMMENT: '/*' .*? '*/' -> skip;
 
 
-//MULTIPLE_COMMENT: '/*' ~[\r\n]* '*/' -> skip;
+MULTIPLE_COMMENT: '/*' ~[\r\n]* '*/' -> skip;
