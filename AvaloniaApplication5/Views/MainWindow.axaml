@@ -21,6 +21,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
         <DockPanel>
@@ -43,7 +44,8 @@
                     Click="Button_OnClick"/>
         </StackPanel>
         
-        <TextBox Text="{ Binding FilePath , Mode=TwoWay }" Name="code_editor" FontSize="16" AcceptsReturn="True" AcceptsTab="True"  Grid.Row="1"></TextBox>
+        <TextBox  Text="{ Binding FilePath , Mode=TwoWay }" Name="code_editor" FontSize="16" AcceptsReturn="True" AcceptsTab="True"    Grid.Row="1"></TextBox>
+        <TextBlock Grid.Row="2" Name="Block" ></TextBlock>
     </Grid>
 
 </Window>

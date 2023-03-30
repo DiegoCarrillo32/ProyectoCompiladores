@@ -12,13 +12,13 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AvaloniaApplication5
-build_property.ProjectDir = C:\Users\jose_\OneDrive\Documentos\GitHub\ProyectoCompiladores\AvaloniaApplication5\
+build_property.ProjectDir = /Users/kosti/RiderProjects/AvaloniaApplication5/AvaloniaApplication5/
 
-[C:/Users/jose_/OneDrive/Documentos/GitHub/ProyectoCompiladores/AvaloniaApplication5/App.axaml]
+[/Users/kosti/RiderProjects/AvaloniaApplication5/AvaloniaApplication5/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/jose_/OneDrive/Documentos/GitHub/ProyectoCompiladores/AvaloniaApplication5/Views/ConsoleWindow.axaml]
+[/Users/kosti/RiderProjects/AvaloniaApplication5/AvaloniaApplication5/Views/ConsoleWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/jose_/OneDrive/Documentos/GitHub/ProyectoCompiladores/AvaloniaApplication5/Views/MainWindow.axaml]
+[/Users/kosti/RiderProjects/AvaloniaApplication5/AvaloniaApplication5/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

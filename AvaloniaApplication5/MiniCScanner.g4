@@ -23,6 +23,9 @@ Break : 'break';
 Return : 'return';
 Read : 'read';
 Write : 'write';
+Add: 'add';
+Del: 'del';
+Len : 'len';
 //Block : 'block';
 ActPars : 'actPars';
 Condition : 'condition';
@@ -67,7 +70,7 @@ True: 'true';
 False: 'false';
 New: 'new';
 
-PLAIN_TEXT : '"' (LETTER|NUM| SPECIAL |WS)* '"';
+PLAIN_TEXT : '"'.*?'"';
 
 //FIN DE TAREAS PALABRAS RESERVADAS
 NUM     : DIGIT+ (DOT DIGIT+)?;
@@ -76,7 +79,10 @@ ID      : LETTER (LETTER|DIGIT)*;
 fragment LETTER  : [a-z]|[A-Z];
 fragment DIGIT   : [0-9];
 fragment SPECIAL  : [\p{P}\p{S}];
-
+//([1-9][0-9]*)|([0]+)
 WS      : [ \t\n\r]+ -> skip ;
 COMMENT : '//' ~[\r\n]* -> skip;
-MULTIPLE_COMMENT: '/*' ~[\r\n]* '*/' -> skip;
+MULTIPLE_COMMENT: '/*' .*? '*/' -> skip;
+
+
+//MULTIPLE_COMMENT: '/*' ~[\r\n]* '*/' -> skip;

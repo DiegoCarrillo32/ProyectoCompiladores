@@ -33,8 +33,17 @@ statement:
      returnStatement    | 
      readStatement      |
      writeStatement     |
+     addStatement       |
+     delStatement       |
+     lenStatement       |
      block              | 
      Semicolon;
+
+addStatement: Add Lparen designator (Comma (PLAIN_TEXT | ID | NUM )) Rparen Semicolon;
+
+delStatement: Del Lparen designator Comma expression Rparen Semicolon;
+
+lenStatement: Len Lparen designator Rparen Semicolon;
 
 ifStatement: If Lparen condition Rparen statement (Else statement)?;
 
@@ -60,7 +69,7 @@ condFact : expression relop expression;
 cast: Lparen type Rparen;
 expression: Dash? cast? term (addop term)*; 
 //en factor el type de 'new type' no se puede
-factor: designator (Lparen actPars Rparen)? | NUM | CharConst | StringConst | (False | True) | (New type) | (Lparen expression Rparen);
+factor: designator (Lparen actPars Rparen)? | NUM | CharConst | StringConst | (False | True) | PLAIN_TEXT | (New type) | (Lparen expression Rparen);
 term: factor (mulop factor)*;
 mulop : Mult | Div | Mod;
 addop: Plus | Minus;

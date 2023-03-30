@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Antlr4.Runtime;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Input.TextInput;
 using Avalonia.Interactivity;
 using AvaloniaApplication5.Views;
 using AvaloniaApplication5.ViewModels;
@@ -24,6 +25,8 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         DataContext = new MainWindowViewModel();
+        
+
     }
     
     private void Button_OnClick(object? sender, RoutedEventArgs e)
@@ -97,4 +100,6 @@ public partial class MainWindow : Window
              // FilePopup.IsOpen = true;
         }
     }
+
+
 }

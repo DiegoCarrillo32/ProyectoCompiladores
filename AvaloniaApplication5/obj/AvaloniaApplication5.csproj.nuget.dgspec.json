@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jose_\\OneDrive\\Documentos\\GitHub\\ProyectoCompiladores\\AvaloniaApplication5\\AvaloniaApplication5.csproj": {}
+    "/Users/kosti/RiderProjects/AvaloniaApplication5/AvaloniaApplication5/AvaloniaApplication5.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jose_\\OneDrive\\Documentos\\GitHub\\ProyectoCompiladores\\AvaloniaApplication5\\AvaloniaApplication5.csproj": {
+    "/Users/kosti/RiderProjects/AvaloniaApplication5/AvaloniaApplication5/AvaloniaApplication5.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jose_\\OneDrive\\Documentos\\GitHub\\ProyectoCompiladores\\AvaloniaApplication5\\AvaloniaApplication5.csproj",
+        "projectUniqueName": "/Users/kosti/RiderProjects/AvaloniaApplication5/AvaloniaApplication5/AvaloniaApplication5.csproj",
         "projectName": "AvaloniaApplication5",
-        "projectPath": "C:\\Users\\jose_\\OneDrive\\Documentos\\GitHub\\ProyectoCompiladores\\AvaloniaApplication5\\AvaloniaApplication5.csproj",
-        "packagesPath": "C:\\Users\\jose_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jose_\\OneDrive\\Documentos\\GitHub\\ProyectoCompiladores\\AvaloniaApplication5\\obj\\",
+        "projectPath": "/Users/kosti/RiderProjects/AvaloniaApplication5/AvaloniaApplication5/AvaloniaApplication5.csproj",
+        "packagesPath": "/Users/kosti/.nuget/packages/",
+        "outputPath": "/Users/kosti/RiderProjects/AvaloniaApplication5/AvaloniaApplication5/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jose_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/kosti/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -89,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/kosti/.dotnet/sdk/7.0.100/RuntimeIdentifierGraph.json"
         }
       }
     }
