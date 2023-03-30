@@ -1,16 +1,24 @@
 using System;
+using CodeAccessPermission = System.Security.CodeAccessPermission;
+using System.Windows;
+using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
+using System.Security.Permissions;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Antlr4.Runtime;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Platform;
+using Avalonia.Win32;
 using AvaloniaApplication5.Views;
 using AvaloniaApplication5.ViewModels;
 using gen;
-
+using Microsoft.Build.Framework;
 
 namespace AvaloniaApplication5.Views;
 
@@ -44,7 +52,6 @@ public partial class MainWindow : Window
             Console.WriteLine(_input);
             tokens = new CommonTokenStream(_miniCScanner);
             _miniCParserParser = new MiniCParser(tokens);
-            
             
             //ERRORES
             //_miniCScanner.RemoveErrorListeners();
@@ -92,12 +99,18 @@ public partial class MainWindow : Window
              Console.WriteLine(fileContents);
              var viewModel = (MainWindowViewModel)DataContext;
              viewModel.FilePath = fileContents;
+             UpdateLines();
              //_viewModel.FilePath = fileContents;
              // FilePopup.IsOpen = true;
         }
     }
 
     private void Text_box_OnKeyUp(object? sender, KeyEventArgs e)
+    {
+        UpdateLines();
+    }
+
+    private void UpdateLines()
     {
         int counterTextLine = 0;
         Text_line.Text = "";
@@ -112,5 +125,13 @@ public partial class MainWindow : Window
                 //Text_line.Content += counterTextLine + "\n";
             }
         }
+    }
+
+    private  async void SaveFile_OnClick(object? sender, RoutedEventArgs e)
+    {
+        var sfd = new SaveFileDialog();
+        sfd.Filters.Add(new FileDialogFilter { Name = "Text Files", Extensions = { "txt" } });
+        var file = await sfd.ShowAsync(this);
+        file.Insert(0, Text_box.Text);
     }
 }

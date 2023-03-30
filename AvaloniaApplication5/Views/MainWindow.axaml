@@ -16,37 +16,54 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     <ScrollViewer >
-        <Grid RowDefinitions="Auto,*,Auto">
-        
-            <Grid Grid.Row="0" Background="White">
+        <Grid RowDefinitions="30,*">
+            <Grid Grid.Row="0" Background="white">
                 <DockPanel>
                     <Menu DockPanel.Dock="Top">
                         <MenuItem Header="_File" >
                             <MenuItem Click="OpenFile_Click" Header="_Open..." />
                             <Separator/>
-                            <MenuItem Header="_Exit"/>
-                        </MenuItem>
-                        <MenuItem Header="_Edit">
-                            <MenuItem Header="Copy"/>
-                            <MenuItem Header="Paste"/>
+                            <MenuItem Click="SaveFile_OnClick" Header="_Save File..."/>
                         </MenuItem>
                     </Menu>
                 </DockPanel>
-            
-                <Button Content="Build code" HorizontalAlignment="Right" Margin="10" Background="Green"
+                <Button Content="Build code" HorizontalAlignment="Right" Background="Green"
                         Foreground="white"
-                        Click="Button_OnClick"/>
-
+                        Click="Button_OnClick"/>            
             </Grid>
-        
-        
-            <Grid ColumnDefinitions="Auto,*,Auto" Grid.Row="1"  Background="White">
-                <TextBlock Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Visible" Name="Text_line"  Background="White"  FontSize="20" Width="40" Text="1" />
-                <TextBox Grid.Column="1"  Grid.Row="1" Name="Text_box" Text="{Binding FilePath}" KeyUp="Text_box_OnKeyUp"  Margin="-6" FontSize="20" AcceptsReturn="True" AcceptsTab="True" ></TextBox>            
+            <Grid Grid.Row="1" Background="orange" ColumnDefinitions="50,*,Auto">
+                <Grid Grid.Column="0" Background="cyan" RowDefinitions="55,*">
+                    <Grid Grid.Row="0" Background="blue"></Grid>
+                    <Grid Grid.Row="1" Background="yellow">
+                        <TextBlock Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Visible" Name="Text_line"  
+                                   Background="White"  FontSize="20" Width="30" Text="1" />                    
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1" Background="pink">
+                    <TabControl>
+                        <TabItem Header="Page1" FontSize="10">
+                            <TextBox Name="Text_box" Text="{Binding FilePath}" 
+                                     KeyUp="Text_box_OnKeyUp" FontSize="20" AcceptsReturn="True" 
+                                     AcceptsTab="True" >
+                            </TextBox>
+                        </TabItem>
+                        <TabItem Header="Page2" FontSize="10" >
+                            <TextBox Name="Text_box2" Text="{Binding FilePath2}" 
+                                     KeyUp="Text_box_OnKeyUp"  Margin="-21" FontSize="20" AcceptsReturn="True" 
+                                     AcceptsTab="True" >
+                            </TextBox>
+                        </TabItem>    
+                        <TabItem Header="Page3" FontSize="10">
+                            <TextBox Name="Text_box3" Text="{Binding FilePath3}"
+                                     KeyUp="Text_box_OnKeyUp"  Margin="-21" FontSize="20" AcceptsReturn="True" 
+                                     AcceptsTab="True" >
+                            </TextBox>
+                        </TabItem>
+                    </TabControl>            
+                </Grid>
             </Grid>
             
-        </Grid>    
+        </Grid>
     </ScrollViewer>
     
-     
 </Window>
